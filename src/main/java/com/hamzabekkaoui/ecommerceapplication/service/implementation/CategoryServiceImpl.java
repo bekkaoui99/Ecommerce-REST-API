@@ -6,11 +6,9 @@ import com.hamzabekkaoui.ecommerceapplication.entity.Category;
 import com.hamzabekkaoui.ecommerceapplication.exception.ResourceAlreadyExist;
 import com.hamzabekkaoui.ecommerceapplication.exception.ResourceNotFoundException;
 import com.hamzabekkaoui.ecommerceapplication.mapper.CategoryMapper;
-import com.hamzabekkaoui.ecommerceapplication.mapper.ConvertEntityToDtoResponse;
 import com.hamzabekkaoui.ecommerceapplication.repository.CategoryRepository;
 import com.hamzabekkaoui.ecommerceapplication.service.CategoryService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -52,12 +50,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse create(CategoryRequest categoryRequest) {
 
-        boolean exists = categoryRepository.existsByCategoryName(categoryRequest.getCategoryName());
+        boolean exists = categoryRepository.existsByCategoryName(categoryRequest.categoryName());
         if(exists) throw new ResourceAlreadyExist("category with this name already exist :(");
 
         Category category = Category.builder()
-                .categoryName(categoryRequest.getCategoryName())
-                .description(categoryRequest.getDescription())
+                .categoryName(categoryRequest.categoryName())
+                .description(categoryRequest.description())
                 .build();
 
         Category created = categoryRepository.save(category);
@@ -70,9 +68,9 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse update(CategoryRequest categoryRequest, Integer id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("there is no category with this id : " + id));
-        if(categoryRequest.getCategoryName() != null)
+        if(categoryRequest.categoryName() != null)
             category.setCategoryName(category.getCategoryName());
-        if(categoryRequest.getDescription() != null)
+        if(categoryRequest.description() != null)
             category.setDescription(category.getDescription());
         Category updated = categoryRepository.save(category);
 

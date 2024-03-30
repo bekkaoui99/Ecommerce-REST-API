@@ -10,10 +10,10 @@ public class AddressMapper {
 
     public Address addressRequestToAddress(AddressRequest addressRequest){
         return  Address.builder()
-                .country(addressRequest.getCountry())
-                .city(addressRequest.getCity())
-                .street(addressRequest.getStreet())
-                .postalCode(addressRequest.getPostalCode())
+                .country(addressRequest.country())
+                .city(addressRequest.city())
+                .street(addressRequest.street())
+                .postalCode(addressRequest.postalCode())
                 .build();
     }
 

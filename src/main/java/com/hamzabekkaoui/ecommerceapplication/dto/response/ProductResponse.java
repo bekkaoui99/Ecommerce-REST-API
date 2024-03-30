@@ -2,22 +2,22 @@ package com.hamzabekkaoui.ecommerceapplication.dto.response;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
+
 @Builder
-public class ProductResponse {
+public record ProductResponse(
+         Integer productId,
 
-    private Integer productId;
+         String name,
 
-    private String name;
+         String description,
 
-    private String description;
+         double price,
 
-    private double price;
+         Integer quantity,
 
-    private Integer quantity;
+         String categoryName
+) {
 
-    private String categoryName;
+
 }

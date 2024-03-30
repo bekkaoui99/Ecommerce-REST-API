@@ -71,11 +71,11 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse create(OrderRequest orderRequest) throws ResourceAlreadyExist {
 
         // create address where the order will be delivered
-        Address address = addressMapper.addressRequestToAddress(orderRequest.getAddressRequest());
+        Address address = addressMapper.addressRequestToAddress(orderRequest.addressRequest());
         addressRepository.save(address);
 
         // get the user who wants to order some products
-        User user = userRepository.findByUserName(orderRequest.getUserName())
+        User user = userRepository.findByUserName(orderRequest.userName())
                 .orElseThrow(() -> new UsernameNotFoundException("user doesn't exist"));
 
 
@@ -89,14 +89,14 @@ public class OrderServiceImpl implements OrderService {
         Order createdOrder = orderRepository.save(order);
 
         // save all order items
-        List<OrderItem> orderItem = orderRequest.getOrderItemRequests().stream()
+        List<OrderItem> orderItem = orderRequest.orderItemRequests().stream()
                 .map(
                         orderItemRequest -> {
                             return OrderItem.builder()
-                                    .price(orderItemRequest.getPrice())
-                                    .quantity(orderItemRequest.getQuantity())
-                                    .totalPrice(orderItemRequest.getTotalPrice())
-                                    .product(this.getProductById(orderItemRequest.getProductId()))
+                                    .price(orderItemRequest.price())
+                                    .quantity(orderItemRequest.quantity())
+                                    .totalPrice(orderItemRequest.totalPrice())
+                                    .product(this.getProductById(orderItemRequest.productId()))
                                     .order(createdOrder)
                                     .build();
                         })

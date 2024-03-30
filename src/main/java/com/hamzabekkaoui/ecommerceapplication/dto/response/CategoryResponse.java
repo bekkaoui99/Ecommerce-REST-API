@@ -2,16 +2,15 @@ package com.hamzabekkaoui.ecommerceapplication.dto.response;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class CategoryResponse {
+public record CategoryResponse(
+         Integer categoryId,
 
-    private Integer categoryId;
+         String categoryName,
 
-    private String categoryName;
+         String description
+) {
 
-    private String description;
+
 }

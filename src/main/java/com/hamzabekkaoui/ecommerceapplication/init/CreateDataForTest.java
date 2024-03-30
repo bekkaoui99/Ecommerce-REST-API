@@ -116,16 +116,16 @@ public class CreateDataForTest {
                 List<OrderItemRequest> orderItemRequests = new ArrayList<>();
 
                 orderItemRequests.add(OrderItemRequest.builder()
-                        .productId(productN1.getProductId())
-                        .price(productN1.getPrice())
-                        .totalPrice(productN1.getPrice() * productN1.getQuantity())
-                        .quantity(productN1.getQuantity())
+                        .productId(productN1.productId())
+                        .price(productN1.price())
+                        .totalPrice(productN1.price() * productN1.quantity())
+                        .quantity(productN1.quantity())
                         .build());
                 orderItemRequests.add(OrderItemRequest.builder()
-                        .productId(productN2.getProductId())
-                        .price(productN2.getPrice())
-                        .totalPrice(productN2.getPrice() * productN2.getQuantity())
-                        .quantity(productN2.getQuantity())
+                        .productId(productN2.productId())
+                        .price(productN2.price())
+                        .totalPrice(productN2.price() * productN2.quantity())
+                        .quantity(productN2.quantity())
                         .build());
 
                 OrderRequest hamzaOrder = OrderRequest.builder()

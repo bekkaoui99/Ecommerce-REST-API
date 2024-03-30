@@ -6,19 +6,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class OrderItemRequest {
+public record OrderItemRequest(
+        Integer productId,
+        Integer quantity,
+        Double price,
+        Double totalPrice
+) {
 
-
-    private Integer productId;
-
-    private Integer quantity;
-
-    private Double price;
-
-    private Double totalPrice;
 }

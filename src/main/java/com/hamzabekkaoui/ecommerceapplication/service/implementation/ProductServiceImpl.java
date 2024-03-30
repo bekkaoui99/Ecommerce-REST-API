@@ -53,17 +53,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse create(ProductRequest productRequest) throws ResourceAlreadyExist {
 
-        boolean exists = productRepository.existsByName(productRequest.getName());
+        boolean exists = productRepository.existsByName(productRequest.name());
         if (exists) throw new ResourceAlreadyExist("this product already exist");
 
-        Category category = categoryRepository.findByCategoryName(productRequest.getCategoryName())
+        Category category = categoryRepository.findByCategoryName(productRequest.categoryName())
                 .orElseThrow(() -> new ResourceNotFoundException("category doesn't exist"));
 
         Product product = Product.builder()
-                .name(productRequest.getName())
-                .description(productRequest.getDescription())
-                .price(productRequest.getPrice())
-                .quantity(productRequest.getQuantity())
+                .name(productRequest.name())
+                .description(productRequest.description())
+                .price(productRequest.price())
+                .quantity(productRequest.quantity())
                 .category(category)
                 .build();
 
@@ -78,17 +78,17 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("there is not product with this id : " + id));
 
-        if(productRequest.getName() != null)
+        if(productRequest.name() != null)
             product.setName(product.getName());
-        if(productRequest.getDescription() != null)
-            product.setDescription(productRequest.getDescription());
-        if(productRequest.getPrice() > 0)
-            product.setPrice(productRequest.getPrice());
-        if(productRequest.getQuantity() > 0)
-            product.setQuantity(productRequest.getQuantity());
-        if(productRequest.getCategoryName() != null){
-            Category category = categoryRepository.findByCategoryName(productRequest.getCategoryName())
-                    .orElseThrow(() -> new ResourceNotFoundException("there is no category with this name : " + productRequest.getCategoryName()));
+        if(productRequest.description() != null)
+            product.setDescription(productRequest.description());
+        if(productRequest.price() > 0)
+            product.setPrice(productRequest.price());
+        if(productRequest.quantity() > 0)
+            product.setQuantity(productRequest.quantity());
+        if(productRequest.categoryName() != null){
+            Category category = categoryRepository.findByCategoryName(productRequest.categoryName())
+                    .orElseThrow(() -> new ResourceNotFoundException("there is no category with this name : " + productRequest.categoryName()));
             product.setCategory(category);
         }
 

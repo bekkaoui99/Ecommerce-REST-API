@@ -3,22 +3,21 @@ package com.hamzabekkaoui.ecommerceapplication.dto.response;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class OrderItemResponse {
+public record OrderItemResponse(
+         Integer OrderItemId,
 
-    private Integer OrderItemId;
+         Integer OrderId,
 
-    private Integer OrderId;
+         ProductResponse productResponse,
 
-    private ProductResponse productResponse;
+         Integer quantity,
 
-    private Integer quantity;
+         Double price,
 
-    private Double price;
+         Double totalPrice
+) {
 
-    private Double totalPrice;
+
 }

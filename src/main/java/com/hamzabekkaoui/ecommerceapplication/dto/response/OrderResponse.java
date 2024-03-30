@@ -5,24 +5,23 @@ import lombok.*;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class OrderResponse {
+public record OrderResponse(
+         String userName,
 
-    private String userName;
+         Integer orderId,
 
-    private Integer orderId;
+         String orderCode,
 
-    private String orderCode;
+         String orderStatus,
 
-    private String orderStatus;
+         Double total,
 
-    private Double total;
+         AddressResponse addressResponse,
 
-    private AddressResponse addressResponse;
+        List<OrderItemResponse> orderItemResponses
+) {
 
-    List<OrderItemResponse> orderItemResponses;
+
 }

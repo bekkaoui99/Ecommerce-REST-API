@@ -12,18 +12,13 @@ import lombok.*;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class OrderRequest {
+public record OrderRequest(
+        List<OrderItemRequest> orderItemRequests,
+        AddressRequest addressRequest,
+        String userName,
+        Double total
+) {
 
-    List<OrderItemRequest> orderItemRequests;
-
-    private AddressRequest addressRequest;
-
-    private String userName;
-
-    private Double total;
 }

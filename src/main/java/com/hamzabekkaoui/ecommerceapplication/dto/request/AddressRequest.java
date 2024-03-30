@@ -2,19 +2,14 @@ package com.hamzabekkaoui.ecommerceapplication.dto.request;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class AddressRequest {
+public record AddressRequest(
+        String country,
+        String city,
+        String street,
+        String postalCode
 
-    private String country;
-
-    private String city;
-
-    private String street;
-
-    private String postalCode;
+) {
 
 }

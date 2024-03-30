@@ -3,19 +3,14 @@ package com.hamzabekkaoui.ecommerceapplication.dto.response;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 @Builder
-public class AddressResponse {
+public record AddressResponse(
+        String country,
+        String city,
+        String street,
+        String postalCode
+) {
 
-    private String country;
-
-    private String city;
-
-    private String street;
-
-    private String postalCode;
 
 }

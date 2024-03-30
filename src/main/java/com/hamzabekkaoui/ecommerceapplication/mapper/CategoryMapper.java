@@ -18,8 +18,8 @@ public class CategoryMapper {
 
     public Category categoryRequestToCategory(CategoryRequest categoryRequest){
         return Category.builder()
-                .categoryName(categoryRequest.getCategoryName())
-                .description(categoryRequest.getDescription())
+                .categoryName(categoryRequest.categoryName())
+                .description(categoryRequest.description())
                 .build();
     }
 
