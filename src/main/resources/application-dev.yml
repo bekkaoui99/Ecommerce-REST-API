@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: EcommerceApplication
+  datasource:
+    url: jdbc:mysql://localhost:3306/EcommerceApplication?createDatabaseIfNotExist=true
+    username: hamza
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+
+
+app:
+  security:
+    jwt:
+      secret-key: c0182a0c93fdf659eb425445c099af10c66ce08fca923360bf67139abb1fb5a3
+      expiration: 86400000 # 1 day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+
+server:
+  port: 8090
