@@ -19,10 +19,25 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfiguration {
 
+    private static final String[] WHITE_LIST_URL = {
+            "auth/**" ,
+            "home/**",
+            "/api/v1/auth/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/v3/api-docs/**",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/swagger-ui.html"
+    };
 
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -45,7 +60,7 @@ public class WebSecurityConfiguration {
 
        http.csrf(csrf -> csrf.disable())
                .authorizeHttpRequests( auth -> {
-                   auth.requestMatchers("auth/**" , "home/**" ).permitAll();
+                   auth.requestMatchers(WHITE_LIST_URL).permitAll();
                    /*
                    auth.requestMatchers("admin/**" ).hasAuthority("ADMIN");
                    auth.requestMatchers("customer/**" ).hasAuthority("CUSTOMER");
