@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/v1/orders")
@@ -24,7 +26,7 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Page<OrderResponse> getPageOfOrder(
+    public Page<OrderResponse> getAllOrders(
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
@@ -39,9 +41,12 @@ public class OrderController {
     }
 
 
-    @GetMapping("/orderCode/{orderCode}")
+    @PostMapping("/orderCode")
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    public OrderResponse getOrderByCode(@PathVariable String orderCode){
+    public OrderResponse getOrderByOrderCode(
+            @RequestBody Map<String , String> request
+            ){
+        String orderCode = request.get("orderCode");
         return orderService.getByOrderCode(orderCode);
     }
 
