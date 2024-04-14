@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class ProductController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    public Page<ProductResponse> getPageOfProduct(
+    public Page<ProductResponse> getAllProducts(
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
@@ -33,22 +35,24 @@ public class ProductController {
         return productService.getByID(id);
     }
 
-    @GetMapping("/ByName/{name}")
+    @PostMapping("/byName")
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ProductResponse getProductByName(
-            @PathVariable(name = "name") String name
-    ){
-        return productService.getByName(name);
+            @RequestBody Map<String , String> request
+            ){
+        String productName = request.get("productName");
+        return productService.getByName(productName);
     }
 
-    @GetMapping("/category/{category}")
+    @PostMapping("/category")
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public Page<ProductResponse> getAllProductByCategory(
-            @PathVariable(name = "category") String category,
+            @RequestBody Map<String , String> request,
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
-        return productService.getAllProductByCategory(pageNumber , pageSize ,category);
+        String categoryName = request.get("categoryName");
+        return productService.getAllProductByCategory(pageNumber , pageSize ,categoryName);
     }
 
     @PostMapping
