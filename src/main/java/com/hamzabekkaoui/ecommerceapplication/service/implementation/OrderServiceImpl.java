@@ -90,8 +90,7 @@ public class OrderServiceImpl implements OrderService {
 
         // save all order items
         List<OrderItem> orderItem = orderRequest.orderItemRequests().stream()
-                .map(
-                        orderItemRequest -> {
+                .map(orderItemRequest -> {
                             return OrderItem.builder()
                                     .price(orderItemRequest.price())
                                     .quantity(orderItemRequest.quantity())

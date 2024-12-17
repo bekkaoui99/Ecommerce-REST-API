@@ -2,9 +2,9 @@ spring:
   application:
     name: EcommerceApplication
   datasource:
-    url: jdbc:mysql://localhost:3306/EcommerceApplication?createDatabaseIfNotExist=true
-    username: hamza
-    password: password
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -12,15 +12,14 @@ spring:
       ddl-auto: update
     database: mysql
 
-
 app:
   security:
     jwt:
-      secret-key: c0182a0c93fdf659eb425445c099af10c66ce08fca923360bf67139abb1fb5a3
+      secret-key: ${SECURITY_JWT_SECRET_KEY}
       expiration: 86400000 # 1 day
       refresh-token:
         expiration: 604800000 # 7 days
 
 
 server:
-  port: 8090
+  port: ${SERVER_PORT}
