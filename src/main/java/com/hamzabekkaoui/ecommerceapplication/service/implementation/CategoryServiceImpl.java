@@ -26,9 +26,13 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
 
 
+    @Override
+    public List<CategoryResponse> getAllAsList() {
+        return List.of();
+    }
 
     @Override
-    public Page<CategoryResponse> pageOfData(int pageNumber, int pageSize) {
+    public Page<CategoryResponse> getAllAsPage(int pageNumber, int pageSize) {
 
         Page<Category> allCategories = categoryRepository.findAll(PageRequest.of(pageNumber, pageSize));
 

@@ -5,9 +5,13 @@ import com.hamzabekkaoui.ecommerceapplication.exception.ResourceNotFoundExceptio
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 public interface CrudService<REQUEST , RESPONSE , ID> {
 
-    Page<RESPONSE> pageOfData(int pageNumber, int pageSize);
+    List<RESPONSE> getAllAsList();
+
+    Page<RESPONSE> getAllAsPage(int pageNumber, int pageSize);
 
     RESPONSE getByID(ID id) throws ResourceNotFoundException;
 

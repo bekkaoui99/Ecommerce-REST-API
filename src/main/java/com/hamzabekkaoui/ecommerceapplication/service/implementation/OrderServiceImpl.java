@@ -38,9 +38,13 @@ public class OrderServiceImpl implements OrderService {
     private final AddressMapper addressMapper;
 
 
+    @Override
+    public List<OrderResponse> getAllAsList() {
+        return List.of();
+    }
 
     @Override
-    public Page<OrderResponse> pageOfData(int pageNumber, int pageSize) {
+    public Page<OrderResponse> getAllAsPage(int pageNumber, int pageSize) {
 
         Page<Order> orders = orderRepository.findAll(PageRequest.of(pageNumber, pageSize));
 

@@ -30,7 +30,7 @@ public class OrderController {
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
-        return orderService.pageOfData(pageNumber, pageSize);
+        return orderService.getAllAsPage(pageNumber, pageSize);
 
     }
 

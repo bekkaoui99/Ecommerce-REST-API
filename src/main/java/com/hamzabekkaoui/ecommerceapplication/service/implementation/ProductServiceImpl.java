@@ -31,7 +31,12 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Page<ProductResponse> pageOfData(int pageNumber, int pageSize) {
+    public List<ProductResponse> getAllAsList() {
+        return List.of();
+    }
+
+    @Override
+    public Page<ProductResponse> getAllAsPage(int pageNumber, int pageSize) {
 
         Page<Product> allProducts = productRepository.findAll(PageRequest.of(pageNumber, pageSize));
         List<ProductResponse> productResponse = allProducts.getContent().stream()

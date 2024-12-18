@@ -25,7 +25,7 @@ public class ProductController {
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
-        return productService.pageOfData(pageNumber, pageSize);
+        return productService.getAllAsPage(pageNumber, pageSize);
 
     }
 

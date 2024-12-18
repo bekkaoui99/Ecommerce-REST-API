@@ -22,7 +22,7 @@ public class CategoryController {
             @RequestParam(name = "pageNumber" , defaultValue = "0") int pageNumber ,
             @RequestParam(name = "pageSize" , defaultValue = "0") int pageSize
     ){
-        return categoryService.pageOfData(pageNumber, pageSize);
+        return categoryService.getAllAsPage(pageNumber, pageSize);
 
     }
 
